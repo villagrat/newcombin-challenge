@@ -5,7 +5,7 @@
 * Los datos del formulario deben ser enviados a la API, la tabla de la derecha debe recibir los datos de la misma al cargarse el sitio y luego de cada insercion exitosa
 * El boton reset debe limpiar los campos del formulario
 * El boton save debe enviar los datos a la API
-* El número de seguro social (ssn), es único, y no puede repetirce en la lista.
+* El número de seguro social (ssn), es único, y no puede repetirse en la lista.
 * En caso de un intento de inserción erroneo, se debe informar dicho error
 
 ## API
@@ -33,4 +33,4 @@ La pagina debe poder comunicarse con la API de este repositorio. La misma consta
 * Se puede usar google :D
 * Se puede usar POSTMAN para verificar el funcionamento de la API
 * Crear un archivo README.md para indicar como se debe utilizar su desarrollo
-* Subir a un repositior git con privilegios publicos de lectura
+* Subir a un repositior git con privilegios publicos de lectura y compartir el link como resultado
