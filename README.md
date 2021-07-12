@@ -1,7 +1,7 @@
 # Entrevista laboral
 ## Requisitos
 * Crear en una nueva carpeta el siguiente sitio web
-![alt text](https://gitlab.com/newcombin/devskills/raw/master/design.png "Diseño web")
+![alt text](https://github.com/newcombin/devskills/blob/main/design.png "Diseño web")
 * Los datos del formulario deben ser enviados a la API, la tabla de la derecha debe recibir los datos de la misma al cargarse el sitio y luego de cada insercion exitosa
 * El boton reset debe limpiar los campos del formulario
 * El boton save debe enviar los datos a la API
