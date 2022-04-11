@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import PersonItem from './PersonItem';
 import Spinner from './Spinner';
 
-function PeopleList({ infoPersonas }) {
+function PeopleList() {
   const [listaPersonas, setListaPersonas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchPersonas();
-  }, [infoPersonas]);
+  }, []);
 
   const fetchPersonas = async () => {
-    const response = await fetch('http://localhost:8081/api/members');
-    const data = await response.json();
+    try {
+      const response = await axios.get('http://localhost:8081/api/members');
 
-    setListaPersonas(data);
-    setIsLoading(false);
+      setListaPersonas(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      toast.error(`${error.message}`);
+    }
   };
 
   if (listaPersonas.length === 0) {
@@ -27,7 +32,7 @@ function PeopleList({ infoPersonas }) {
   }
 
   return (
-    <div>
+    <div className='lista-container'>
       <h1 className='lista-header'>Lista de personas cargadas en el sistema</h1>
       <div className='person-headings'>
         <div>Nombre</div>
