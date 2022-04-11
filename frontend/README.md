@@ -14,12 +14,16 @@ You may also see any lint errors in the console.
 
 ## Dependencias instaladas
 
-**`react-toastify`**
-
-Para los popups de éxitos / errores en la app
-
 **`react-router-dom`**
 
-Para la navegación en la página
+Usamos la versión 6 de esta dependencia para manejar las rutas / navegación por la página
+
+**`react-toastify`**
+
+Popups de éxitos / errores en la app
+
+**`react-icons`**
+
+Un paquete de Iconos de FontAwesome
 
 ## Deployment del proyecto
