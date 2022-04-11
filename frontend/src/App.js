@@ -6,10 +6,11 @@ import PersonForm from './components/PersonForm';
 import PeopleList from './components/PeopleList';
 import Footer from './components/Footer';
 import About from './pages/About';
+import { PersonasProvider } from './context/PersonasContext';
 
 function App() {
   return (
-    <>
+    <PersonasProvider>
       <Router>
         <Navbar />
         <div className='container'>
@@ -31,7 +32,7 @@ function App() {
       </Router>
       <Footer />
       <ToastContainer />
-    </>
+    </PersonasProvider>
   );
 }
 

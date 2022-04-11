@@ -1,27 +1,12 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useContext, useEffect } from 'react';
+import PersonasContext from '../context/PersonasContext';
 import { toast } from 'react-toastify';
 import PersonItem from './PersonItem';
 import Spinner from './Spinner';
 
 function PeopleList() {
-  const [listaPersonas, setListaPersonas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchPersonas();
-  }, []);
-
-  const fetchPersonas = async () => {
-    try {
-      const response = await axios.get('http://localhost:8081/api/members');
-
-      setListaPersonas(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      toast.error('Error: ' + error.response.data.message);
-    }
-  };
+  // destructure context
+  const { isLoading, listaPersonas } = useContext(PersonasContext);
 
   if (listaPersonas.length === 0) {
     return <p>Todavía no se cargó a nadie al sistema</p>;

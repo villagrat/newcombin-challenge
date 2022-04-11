@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
+import PersonasContext from '../context/PersonasContext';
 import Button from './Button';
 import Spinner from './Spinner';
 import { toast } from 'react-toastify';
 
 function PersonForm() {
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,8 +13,10 @@ function PersonForm() {
     ssn: '',
   });
 
-  // destructure
+  // destructure form data
   const { firstName, lastName, address, ssn } = formData;
+  // destructure context
+  const { isLoading, addPersona } = useContext(PersonasContext);
 
   // handle form data change event
   const onMutate = (e) => {
@@ -60,11 +61,11 @@ function PersonForm() {
       address: '',
       ssn: '',
     });
+    setBtnDisabled(true);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     // minimo de largo en el input de Nombre, Apellido, Direccion
     if (
@@ -72,7 +73,6 @@ function PersonForm() {
       lastName.trim().length < 1 ||
       address.trim().length < 1
     ) {
-      setIsLoading(false);
       toast.error(
         'Nombre, Apellido y Dirección deben tener por lo menos dos letras'
       );
@@ -80,31 +80,13 @@ function PersonForm() {
     }
     // validacion de formato correcto ssn
     else if (ssn.trim().length !== 9) {
-      setIsLoading(false);
       toast.error('SSN incorrecto');
       return;
     }
 
-    try {
-      // si llegaron 9 numeros en 'ssn'
-      // aplicar formato correcto para SSN antes de enviar al servidor con grupos de captura de regex
-      let formattedSsn = ssn.replace(/^(\d{3})(\d{2})(\d{4})$/, '$1-$2-$3');
-      await axios.post('http://localhost:8081/api/members', {
-        firstName,
-        lastName,
-        address,
-        ssn: formattedSsn,
-      });
-      setIsLoading(false);
-      clearFormData();
-      toast.success('Persona agregada exitosamente!');
-      return;
-    } catch (error) {
-      setIsLoading(false);
-      clearFormData();
-      toast.error('Error: ' + error.response.data.message);
-      return;
-    }
+    addPersona(formData);
+    // resetear estado del form
+    clearFormData();
   };
 
   if (isLoading) {
