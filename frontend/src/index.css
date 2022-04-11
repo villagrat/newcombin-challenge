@@ -189,3 +189,44 @@ footer {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
+
+.person-created {
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 50px;
+}
+
+.person-number {
+  margin-bottom: 30px;
+}
+
+.person-number h2 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.person-number p {
+  font-size: 1.3rem;
+}
+
+.person-info {
+  font-size: 1.3rem;
+}
+
+.person,
+.person-headings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #f4f4f4;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.person-headings {
+  font-weight: 700;
+}
