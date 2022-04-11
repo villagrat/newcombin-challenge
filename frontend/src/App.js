@@ -12,7 +12,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <div className='Container'>
+        <div className='container'>
           <Routes>
             <Route
               exact

@@ -28,7 +28,7 @@ function PeopleList({ infoPersonas }) {
 
   return (
     <div>
-      <h1>Lista de personas cargadas en el sistema</h1>
+      <h1 className='lista-header'>Lista de personas cargadas en el sistema</h1>
       <div className='person-headings'>
         <div>Nombre</div>
         <div>Apellido</div>
