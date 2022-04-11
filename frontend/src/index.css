@@ -159,19 +159,11 @@ code {
   width: 100%;
   margin-bottom: 20px;
 }
-.btn-sm {
-  padding: 5px 15px;
-  font-size: 13px;
-}
 
-.btn-danger {
-  background: darkred;
-  border: none;
-}
-
-.btn-back {
-  width: 150px;
-  margin-bottom: 20px;
+button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 .btn:hover {

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from './Button';
 import Spinner from './Spinner';
 import { toast } from 'react-toastify';
 
 function PersonForm() {
-  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [btnDisabled, setBtnDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -25,6 +25,33 @@ function PersonForm() {
     }));
   };
 
+  // allow only digits to be typed in 'ssn' field w/ some regex
+  const checkInput = (e) => {
+    const onlyDigits = e.target.value.replace(/\D/g, '');
+    setFormData((prevState) => ({
+      ...prevState,
+      ['ssn']: onlyDigits,
+    }));
+  };
+
+  // on form state change, check conditions to enable btn
+  useEffect(() => {
+    checkIfEnableBtn();
+  }, [onMutate, checkInput]);
+  // disablear el btn de submit si no se cumplen las validaciones previas
+  const checkIfEnableBtn = () => {
+    if (
+      firstName.trim().length >= 2 &&
+      lastName.trim().length >= 2 &&
+      address.trim().length >= 2 &&
+      ssn.trim().length === 9
+    ) {
+      setBtnDisabled(false);
+    } else {
+      setBtnDisabled(true);
+    }
+  };
+
   // reset form state
   const clearFormData = () => {
     setFormData({
@@ -35,16 +62,6 @@ function PersonForm() {
     });
   };
 
-  // allow only digits to be typed in 'ssn' field w/ some regex
-  const checkInput = (e) => {
-    const onlyDigits = e.target.value.replace(/\D/g, '');
-    setFormData((prevState) => ({
-      ...prevState,
-      ['ssn']: onlyDigits,
-    }));
-  };
-
-  // disablear el btn de submit si no se cumplen las validaciones previas
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -70,7 +87,7 @@ function PersonForm() {
 
     try {
       // si llegaron 9 numeros en 'ssn'
-      // aplicar formato correcto para SSN antes de enviar al servidor
+      // aplicar formato correcto para SSN antes de enviar al servidor con grupos de captura de regex
       let formattedSsn = ssn.replace(/^(\d{3})(\d{2})(\d{4})$/, '$1-$2-$3');
       await axios.post('http://localhost:8081/api/members', {
         firstName,
@@ -85,7 +102,7 @@ function PersonForm() {
     } catch (error) {
       setIsLoading(false);
       clearFormData();
-      toast.error('Ocurrió un error al tratar de cargar la persona al sistema');
+      toast.error('Error: ' + error.response.data.message);
       return;
     }
   };
@@ -134,7 +151,9 @@ function PersonForm() {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='ssn'>Social Security Number</label>
+          <label htmlFor='ssn'>
+            Social Security Number - (solamente números)
+          </label>
           <input
             type='text'
             id='ssn'
@@ -150,7 +169,11 @@ function PersonForm() {
             isDisabled={btnDisabled}
             innerText='Submit'
           ></Button>
-          <button className='btn btn-block btn-reverse' onClick={clearFormData}>
+          <button
+            className='btn btn-block btn-reverse'
+            onClick={clearFormData}
+            title='Borrar datos del formulario'
+          >
             Reset
           </button>
         </div>

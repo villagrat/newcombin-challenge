@@ -19,7 +19,7 @@ function PeopleList() {
       setListaPersonas(response.data);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.message}`);
+      toast.error('Error: ' + error.response.data.message);
     }
   };
 
