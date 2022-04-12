@@ -26,7 +26,7 @@ function PersonForm() {
     }));
   };
 
-  // allow only digits to be typed in 'ssn' field w/ some regex
+  // allow only digits to be typed in 'ssn' field using regex
   const checkInput = (e) => {
     const onlyDigits = e.target.value.replace(/\D/g, '');
     setFormData((prevState) => ({
@@ -39,7 +39,7 @@ function PersonForm() {
   useEffect(() => {
     checkIfEnableBtn();
   }, [onMutate, checkInput]);
-  // disablear el btn de submit si no se cumplen las validaciones previas
+  // disable submit btn if any of the previous validations fail
   const checkIfEnableBtn = () => {
     if (
       firstName.trim().length >= 2 &&
@@ -67,6 +67,7 @@ function PersonForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // estos chequeos solo son salvaguardas para no enviar una mala request a la API
     // minimo de largo en el input de Nombre, Apellido, Direccion
     if (
       firstName.trim().length < 1 ||
@@ -85,6 +86,7 @@ function PersonForm() {
     }
 
     addPersona(formData);
+
     // resetear estado del form
     clearFormData();
   };

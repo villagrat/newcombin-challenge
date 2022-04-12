@@ -1,6 +1,5 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import PersonasContext from '../context/PersonasContext';
-import { toast } from 'react-toastify';
 import PersonItem from './PersonItem';
 import Spinner from './Spinner';
 
