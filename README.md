@@ -31,8 +31,10 @@
 
   ### `npx cypress open`
 
-  > Abre una ventana donde se puede seleccionar el browser donde simular los tests
-  > Hay que clickear en el archivo `endToEndTests.spec.js` para iniciar el suite de tests
+  > Abre una ventana donde se puede seleccionar el browser donde simular los tests.
+
+  > Hay que clickear en el archivo `endToEndTests.spec.js` para iniciar el suite de tests.
+
   > Los tests escritos se encuentran en el directorio `/frontend/cypress/integration/test-suite/`
 
 ## Dependencias instaladas
