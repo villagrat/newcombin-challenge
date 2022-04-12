@@ -31,13 +31,14 @@ function PersonForm() {
     const onlyDigits = e.target.value.replace(/\D/g, '');
     setFormData((prevState) => ({
       ...prevState,
-      ['ssn']: onlyDigits,
+      [e.target.id]: onlyDigits,
     }));
   };
 
   // on form state change, check conditions to enable btn
   useEffect(() => {
     checkIfEnableBtn();
+    // eslint-disable-next-line
   }, [onMutate, checkInput]);
   // disable submit btn if any of the previous validations fail
   const checkIfEnableBtn = () => {

@@ -23,6 +23,18 @@
 
   > Inicia la aplicación React en el puerto `:3000`
 
+## Cómo correr el suite de tests end-to-end con cypress:
+
+- Como primer paso, tener corriendo tanto la API como la aplicación React para su correcto funcionamiento
+
+- Luego, desde el directorio `/frontend/` del proyecto, correr:
+
+  ### `npx cypress open`
+
+  > Abre una ventana donde se puede seleccionar el browser donde simular los tests
+  > Hay que clickear en el archivo `endToEndTests.spec.js` para iniciar el suite de tests
+  > Los tests escritos se encuentran en el directorio `/frontend/cypress/integration/test-suite/`
+
 ## Dependencias instaladas
 
 **`react-router-dom`**
@@ -32,6 +44,10 @@ Usamos la versión 6 de esta dependencia para manejar las rutas / navegación po
 **`axios`**
 
 Axios para las requests HTTP
+
+**`cypress`**
+
+Framework de testing end-to-end para comprobar que la app cumple con todos los requisitos pedidos
 
 **`react-toastify`**
 
