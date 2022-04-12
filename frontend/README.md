@@ -1,22 +1,30 @@
 # NewCombin React Challenge
 
-## Cómo correr el proyecto
+## Cómo correr el proyecto localmente:
 
-En el directorio del proyecto, correr el script:
+Luego de haberlo clonado,
 
-### `npm start`
+1. En el directorio principal del proyecto, correr el script:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `npm run serve`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Lo cual comenzará la API en el puerto `:8081`
+
+2. En el directorio `/frontend/` del proyecto, correr el script:
+
+### `npm run start`
+
+Lo cual correrá la app en develelopment mode en el puerto `:3000`
 
 ## Dependencias instaladas
 
 **`react-router-dom`**
 
 Usamos la versión 6 de esta dependencia para manejar las rutas / navegación por la página
+
+**`axios`**
+
+Axios para requests HTTP
 
 **`react-toastify`**
 
@@ -25,5 +33,3 @@ Popups de éxitos / errores en la app
 **`react-icons`**
 
 Un paquete de Iconos de FontAwesome
-
-## Deployment del proyecto
